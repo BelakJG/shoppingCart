@@ -12,19 +12,15 @@ export default function Shop({productData, error, loading, currentCart, updateCa
 
     const handleCartChange = (index, event) => {
         const newValue = event.currentTarget.value;
-        const newArr = [...currentCart];
-        newArr[index] = newValue;
-        updateCart(newArr);
+        updateCart({...currentCart, [index]: newValue});
     }
     const decCart = (index) => {
-        const newArr = [...currentCart];
-        if (newArr[index] > 0) newArr[index] -= 1;
-        updateCart(newArr);
+        const newValue = +currentCart[index] - 1;
+        if (newValue >= 0) updateCart({...currentCart, [index]: newValue});
     }
     const incCart = (index) => {
-        const newArr = [...currentCart];
-        newArr[index] += 1;
-        updateCart(newArr);
+        const newValue = (+currentCart[index] || 0) + 1;
+        updateCart({...currentCart, [index]: newValue});
     }
 
     const productCards = productData.map((product, index) => <div className="product" key={index}>
@@ -33,7 +29,7 @@ export default function Shop({productData, error, loading, currentCart, updateCa
         <p>Price: ${product.price}</p>
         <div className="cartCount">
             <button type="button" onClick={() => decCart(index)}>-</button>
-            <input type="number" value={currentCart[index]} onChange={(event) => handleCartChange(index, event)}></input>
+            <input type="number" value={currentCart[index] || 0} onChange={(event) => handleCartChange(index, event)}></input>
             <button type="button" onClick={() => incCart(index)}>+</button>
         </div>
     </div>);

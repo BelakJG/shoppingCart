@@ -9,7 +9,7 @@ import { useProductInfo } from "./components/productHook"
 
 export default function App() {
   const {productData, productError, productLoading} = useProductInfo();
-  const [currentCart, setCurrentCart] = useState(new Array(20).fill(0));
+  const [currentCart, setCurrentCart] = useState({});
   
   const router = createBrowserRouter([
     {
