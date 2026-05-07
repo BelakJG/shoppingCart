@@ -9,6 +9,7 @@ import { useProductInfo } from "./components/productHook"
 
 export default function App() {
   const {productData, productError, productLoading} = useProductInfo();
+  const [currentCart, setCurrentCart] = useState(new Array(20).fill(0));
   
   const router = createBrowserRouter([
     {
@@ -24,7 +25,7 @@ export default function App() {
             },
             {
               path: "/shop",
-              element: <Shop productData={productData} error={productError} loading={productLoading}/>
+              element: <Shop productData={productData} error={productError} loading={productLoading} currentCart={currentCart} updateCart={setCurrentCart}/>
             },
             {
               path: "/cart",
