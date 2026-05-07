@@ -2,30 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/shop.css"
 
-export default function Shop() {
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [itemData, setItemData] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("https://fakestoreapi.com/products?limit=20");
-                if (!response.ok) {
-                    throw new Error(`HTTP Error, status: ${response.status}`)
-                }
-                const data = await response.json();
-                setItemData(itemData => data);
-            } catch (error) {
-                setError(`Fetch Error: ${error.message}`)
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchData();
-    }, []);
-
+export default function Shop({productData, error, loading}) {
     if (loading) {
         return(<h1>Loading!</h1>);
     }
@@ -33,15 +10,20 @@ export default function Shop() {
         throw error;
     }
 
-    const itemCards = itemData.map(product => <div className="product" key={product.id}>
-        <h3>{product.title}</h3>
+    const productCards = productData.map((product, index) => <div className="product" key={index}>
+        <h4>{product.title}</h4>
         <img src={product.image}></img>
         <p>Price: ${product.price}</p>
+        <div className="cartCount">
+            <button type="button">-</button>
+            <input type="number" value={0}></input>
+            <button type="button">+</button>
+        </div>
     </div>);
 
     return (<div id="shop">
         <h1>Shop Page</h1>
-        <div id="cards">{itemCards}</div>
+        <div id="cards">{productCards}</div>
         <footer><p>Product info and images from <a href="https://fakestoreapi.com/" target="_blank" rel="noopener noreferrer">Fake Store API</a></p></footer>
     </ div>);
 }

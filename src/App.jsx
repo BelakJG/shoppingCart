@@ -5,33 +5,36 @@ import Home from './routes/home';
 import Shop from './routes/shop';
 import Cart from './routes/cart';
 import ErrorPage from "./routes/errorPage"
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
-        errorElement: <ErrorPage />,
-        children: [
-          {
-            index: true,
-            element: <Home />
-          },
-          {
-            path: "/shop",
-            element: <Shop />
-          },
-          {
-            path: "/cart",
-            element: <Cart />
-          }
-        ]
-      }
-    ]
-  }
-]);
+import { useProductInfo } from "./components/productHook"
 
 export default function App() {
+  const {productData, productError, productLoading} = useProductInfo();
+  
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        {
+          errorElement: <ErrorPage />,
+          children: [
+            {
+              index: true,
+              element: <Home />
+            },
+            {
+              path: "/shop",
+              element: <Shop productData={productData} error={productError} loading={productLoading}/>
+            },
+            {
+              path: "/cart",
+              element: <Cart />
+            }
+          ]
+        }
+      ]
+    }
+  ]);
+
   return (<RouterProvider router={router} />)
 }
