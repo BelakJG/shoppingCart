@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import ProductButtons from "../components/productButtons";
 import "../styles/shop.css"
 
 export default function Shop({productData, error, loading, currentCart, updateCart}) {
@@ -27,11 +28,7 @@ export default function Shop({productData, error, loading, currentCart, updateCa
         <h4>{product.title}</h4>
         <img src={product.image}></img>
         <p>Price: ${product.price}</p>
-        <div className="cartCount">
-            <button type="button" onClick={() => decCart(index)}>-</button>
-            <input type="number" value={currentCart[index] || 0} onChange={(event) => handleCartChange(index, event)}></input>
-            <button type="button" onClick={() => incCart(index)}>+</button>
-        </div>
+        <ProductButtons currentCart={currentCart} updateCart={updateCart} index={index} />
     </div>);
 
     return (<div id="shop">

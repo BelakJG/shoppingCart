@@ -5,7 +5,7 @@ import Home from './routes/home';
 import Shop from './routes/shop';
 import Cart from './routes/cart';
 import ErrorPage from "./routes/errorPage"
-import { useProductInfo } from "./components/productHook"
+import { useProductInfo } from "./components/productHook.jsx"
 
 export default function App() {
   const {productData, productError, productLoading} = useProductInfo();
