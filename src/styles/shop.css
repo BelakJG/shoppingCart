@@ -28,23 +28,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     text-align: center;
     box-shadow: 0 0 8px 2px grey;
 }
 
 .cartCount {
     display: flex;
+    gap: 2px;
     align-items: center;
     justify-content: center;
 }
 
 .cartCount input {
-    width: 50%;
+    margin: 0;
+    padding: 0;
+    height: 1.5rem;
+    width: 80%;
 }
 
 #cards .product input[type=number] {
     -moz-appearance: textfield;
+    text-align: center;
+}
+
+#cards .product button {
+    box-sizing: content-box;
+    padding: 0;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 input::-webkit-outer-spin-button,

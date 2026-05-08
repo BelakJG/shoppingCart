@@ -27,7 +27,7 @@ export default function Shop({productData, error, loading, currentCart, updateCa
     const productCards = productData.map((product, index) => <div className="product" key={index}>
         <h4>{product.title}</h4>
         <img src={product.image}></img>
-        <p>Price: ${product.price}</p>
+        <strong>Price: ${product.price}</strong>
         <ProductButtons currentCart={currentCart} updateCart={updateCart} index={index} />
     </div>);
 

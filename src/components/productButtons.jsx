@@ -15,8 +15,8 @@ export default function ProductButtons({currentCart, updateCart, index}) {
     }
 
     return(<div className="cartCount">
-        <button type="button" onClick={() => decCart(index)}>-</button>
+        <button type="button" id="decreaseBtn" onClick={() => decCart(index)}>-</button>
         <input type="number" value={currentCart[index] || 0} onChange={(event) => handleCartChange(index, event)}></input>
-        <button type="button" onClick={() => incCart(index)}>+</button>
+        <button type="button" id="increaseBtn" onClick={() => incCart(index)}>+</button>
     </div>);
 }
