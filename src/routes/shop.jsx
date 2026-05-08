@@ -31,9 +31,11 @@ export default function Shop({productData, error, loading, currentCart, updateCa
         <ProductButtons currentCart={currentCart} updateCart={updateCart} index={index} />
     </div>);
 
-    return (<div id="shop">
-        <h1>Shop Page</h1>
-        <div id="cards">{productCards}</div>
-        <footer><p>Product info and images from <a href="https://fakestoreapi.com/" target="_blank" rel="noopener noreferrer">Fake Store API</a></p></footer>
-    </ div>);
+    return (
+        <div id="shop">
+            <h1>Shop Page</h1>
+            <div id="cards">{productCards}</div>
+            <footer><p>Product info and images from <a href="https://fakestoreapi.com/" target="_blank" rel="noopener noreferrer">Fake Store API</a></p></footer>
+        </ div>
+    );
 }
