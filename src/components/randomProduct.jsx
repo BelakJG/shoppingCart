@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export default function RandomProduct({productData, loading}) {
     if (loading || productData.length === 0) return (<></>);
 
-    const [secondsLeft, setSecondsleft] = useState(3 * 60 * 60);
+    const [secondsLeft, setSecondsleft] = useState(6 * 60 * 60);
     const [index] = useState(() => Math.floor(Math.random() * 20))
 
     useEffect(() => {
@@ -25,12 +25,12 @@ export default function RandomProduct({productData, loading}) {
         const mm = String(minutes).padStart(2, "0");
         const ss = String(seconds).padStart(2, "0");
 
-        return `${hh}:${mm}:${ss}`;
+        return secondsLeft >= 0 ? <h2>{`Sale in: ${hh}:${mm}:${ss}`}</h2> : "";
     }
 
     return(<>
         <h1>{productData[index].title}</h1>
         <img src={productData[index].image}></img>
-        <h2>Sale in: <GetTimeLeftString /></h2>
+        <GetTimeLeftString />
     </>);
 }
