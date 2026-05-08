@@ -29,7 +29,7 @@ export default function App() {
             },
             {
               path: "/cart",
-              element: <Cart />
+              element: <Cart productData={productData} error={productError} loading={productLoading} currentCart={currentCart} updateCart={setCurrentCart}/>
             }
           ]
         }
